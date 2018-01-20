@@ -12,6 +12,7 @@ import CoreLocation
 class ViewController: UIViewController {
     
     var searchResults : SearchResult?
+    var dataManager : DataManager = DataManager.init()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +33,8 @@ extension ViewController{
     
     func fetchSearchResults(){
         
-        if let searchResults = MyFileManager.loadSearchResultsFromDisk(){
+        if let searchResults = dataManager.loadSearchResultsFromCD(){
+            debugPrint("MODEL FETCHED FROM STORAGE")
             self.searchResults = searchResults
         }else{
             if CLLocationManager.locationServicesEnabled() {
@@ -61,8 +63,8 @@ extension ViewController{
     func fetchFromServerAndStore(forLat lat:String, andLong long:String){
         hitServiceToFetchNearbyRestaurants(forLat: lat, andLong: long, withCompletionHandler: {
             if let searchResult = self.searchResults{
-                MyFileManager.saveSearchResultsToDisk(searchResult: searchResult, withCompletionHandler: {
-                    debugPrint("MODEL STORED IN STORAGE")
+                self.dataManager.saveSearchResultsToCD(searchResult: searchResult, withCompletionHandler: {
+                     debugPrint("MODEL STORED IN STORAGE")
                 }, andErrorHandler: {
                     debugPrint("ERROR")
                 })

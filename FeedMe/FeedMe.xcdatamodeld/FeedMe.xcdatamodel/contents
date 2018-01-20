@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="16G1114" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Entity" representedClassName="Entity" syncable="YES" codeGenerationType="class"/>
+    <entity name="SearchResultEntity" representedClassName="SearchResultEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="Transformable" customClassName="Location" syncable="YES"/>
+        <attribute name="nearbyRestaurants" optional="YES" attributeType="Transformable" customClassName="[NearbyRestaurants]" syncable="YES"/>
+        <attribute name="popularity" optional="YES" attributeType="Transformable" customClassName="Popularity" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Entity" positionX="-63" positionY="-18" width="128" height="43"/>
+        <element name="SearchResultEntity" positionX="-63" positionY="-18" width="128" height="105"/>
     </elements>
 </model>

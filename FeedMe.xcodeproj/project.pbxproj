@@ -32,7 +32,6 @@
 		2870D411200FE20A0058978F /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2870D406200FE20A0058978F /* Photo.swift */; };
 		2870D412200FE20A0058978F /* UserRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2870D407200FE20A0058978F /* UserRating.swift */; };
 		2870D413200FE20A0058978F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2870D408200FE20A0058978F /* Location.swift */; };
-		2870D4152010BE4D0058978F /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2870D4142010BE4D0058978F /* FileManager.swift */; };
 		2870D4172010C9AE0058978F /* MyLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2870D4162010C9AE0058978F /* MyLocationManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +63,6 @@
 		2870D406200FE20A0058978F /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		2870D407200FE20A0058978F /* UserRating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRating.swift; sourceTree = "<group>"; };
 		2870D408200FE20A0058978F /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		2870D4142010BE4D0058978F /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		2870D4162010C9AE0058978F /* MyLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				2870D3F7200FCE180058978F /* DataManager.swift */,
-				2870D4142010BE4D0058978F /* FileManager.swift */,
 				2870D4162010C9AE0058978F /* MyLocationManager.swift */,
 			);
 			path = Managers;
@@ -276,7 +273,6 @@
 				2870D412200FE20A0058978F /* UserRating.swift in Sources */,
 				2870D3EC200FCC0E0058978F /* KeychainPasswordItem.swift in Sources */,
 				2870D3D2200F77570058978F /* ViewController.swift in Sources */,
-				2870D4152010BE4D0058978F /* FileManager.swift in Sources */,
 				2870D40A200FE20A0058978F /* Popularity.swift in Sources */,
 				2870D40F200FE20A0058978F /* Restaurant.swift in Sources */,
 				2870D410200FE20A0058978F /* R.swift in Sources */,
