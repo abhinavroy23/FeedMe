@@ -11,6 +11,8 @@ import CoreLocation
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     var searchResults : SearchResult?
     var dataManager : DataManager = DataManager.init()
 
@@ -24,8 +26,45 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         fetchSearchResults()
+        
     }
 
+}
+
+//MARK: Table view
+extension ViewController : UITableViewDelegate, UITableViewDataSource{
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let array = self.searchResults?.nearbyRestaurants{
+            return array.count
+        }else{
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell : ViewControllerTableViewCell? = tableView.dequeueReusableCell(withIdentifier: Constant.ID_VC_CELL_TABLE_IDENTIFIER) as? ViewControllerTableViewCell
+        if(cell == nil){
+            cell = ViewControllerTableViewCell.init(style: .default, reuseIdentifier: Constant.ID_VC_CELL_TABLE_IDENTIFIER)
+        }
+        if let array = self.searchResults?.nearbyRestaurants{
+            let restaurantWrapper : NearbyRestaurants = array[indexPath.row]
+            if let restaurant = restaurantWrapper.restaurant{
+                cell?.restaurant = restaurant
+            }
+        }
+        cell?.selectionStyle = .none
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
 }
 
 //MARK: Fetching Search results
@@ -36,6 +75,7 @@ extension ViewController{
         if let searchResults = dataManager.loadSearchResultsFromCD(){
             debugPrint("MODEL FETCHED FROM STORAGE")
             self.searchResults = searchResults
+            self.tableView.reloadData()
         }else{
             if CLLocationManager.locationServicesEnabled() {
                 getLocationAndFetchDataFromServer()
@@ -64,7 +104,10 @@ extension ViewController{
         hitServiceToFetchNearbyRestaurants(forLat: lat, andLong: long, withCompletionHandler: {
             if let searchResult = self.searchResults{
                 self.dataManager.saveSearchResultsToCD(searchResult: searchResult, withCompletionHandler: {
-                     debugPrint("MODEL STORED IN STORAGE")
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    debugPrint("MODEL STORED IN STORAGE")
                 }, andErrorHandler: {
                     debugPrint("ERROR")
                 })

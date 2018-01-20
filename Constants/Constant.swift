@@ -18,4 +18,8 @@ class Constant: NSObject {
     static let ERROR_IN_FETCHING_LOCATION = "Unable to fetch user's location!"
     static let ERROR_LOCATION_DISABLED = "Location service is disabled!"
     static let ERROR_FETCHING_DUMMY_DATA = "Fetching restaurants based on dummy location."
+    
+    //MARK: VC IDENTIFIERS
+    static let ID_DETAIL_VC = "DetailViewController"
+    static let ID_VC_CELL_TABLE_IDENTIFIER = "ViewControllerTableViewCell"
 }

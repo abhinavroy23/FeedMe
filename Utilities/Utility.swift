@@ -50,5 +50,13 @@ class Utility: NSObject {
             return false
         }
     }
+    
+    static func intFromHexString(hexStr: String) -> UInt32 {
+        var hexInt: UInt32 = 0
+        let scanner: Scanner = Scanner(string: hexStr)
+        scanner.charactersToBeSkipped = CharacterSet.init(charactersIn: "#")
+        scanner.scanHexInt32(&hexInt)
+        return hexInt
+    }
 
 }
