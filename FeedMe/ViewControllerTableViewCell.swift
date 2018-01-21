@@ -40,7 +40,7 @@ class ViewControllerTableViewCell: UITableViewCell {
             self.restaurantCuisine.text = restaurant?.cuisines
             self.restaurantCostForTwo.text = "₹ \(restaurant?.averageCostForTwo ?? 0) for two persons"
             self.restaurantRating.setTitle(restaurant?.userRating?.aggregateRating  ?? "", for: .normal)
-            self.restaurantRating.backgroundColor = UIColor.init(hex: "#\(restaurant?.userRating?.ratingColor ?? "#ffffff")")
+            self.restaurantRating.backgroundColor = UIColor.init(hex: "#\(restaurant?.userRating?.ratingColor ?? "#008000")")
             if(restaurant?.hasOnlineDelivery == 1){
                 self.restautarantOnlineDeliveryBtn.setImage(#imageLiteral(resourceName: "check"), for: .normal)
             }else{
@@ -57,11 +57,23 @@ class ViewControllerTableViewCell: UITableViewCell {
                 self.restaurantImage.image = nil
 
             })
+            saveActualImageInBackground(forUrl: restaurant?.featuredImage ?? "")
         }
     }
     
     deinit {
         self.removeObserver(self, forKeyPath: #keyPath(ViewControllerTableViewCell.restaurant))
+    }
+    
+    func saveActualImageInBackground(forUrl url : String){
+        let imageUrl = url.replacingOccurrences(of: "?output-format=webp", with: "")
+        DispatchQueue.global(qos: .background).async {
+            CacheManager.shared.getImageFromPermanentCache(forUrl: imageUrl, withCompletionHandler: { (image) in
+                //DO NOTHING
+            }, andErrorHandler: {
+                //DO NOTHING
+            })
+        }
     }
     
 }

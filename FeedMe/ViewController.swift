@@ -18,7 +18,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,11 +26,24 @@ class ViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         fetchSearchResults()
-        
     }
 
     @IBAction func refreshAction(_ sender: Any) {
         refreshServerData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "detailSegue"){
+            if let indexPath = self.tableView.indexPathForSelectedRow{
+                if let array = self.searchResults?.nearbyRestaurants{
+                    let restaurantWrapper : NearbyRestaurants = array[indexPath.row]
+                    if let restaurant = restaurantWrapper.restaurant{
+                        let detailVC = segue.destination as? DetailViewController
+                        detailVC?.restaurant = restaurant
+                    }
+                }
+            }
+        }
     }
 }
 
