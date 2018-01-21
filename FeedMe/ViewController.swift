@@ -18,6 +18,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,6 +30,9 @@ class ViewController: UIViewController {
         
     }
 
+    @IBAction func refreshAction(_ sender: Any) {
+        refreshServerData()
+    }
 }
 
 //MARK: Table view
@@ -77,12 +81,18 @@ extension ViewController{
             self.searchResults = searchResults
             self.tableView.reloadData()
         }else{
-            if CLLocationManager.locationServicesEnabled() {
-                getLocationAndFetchDataFromServer()
-            }else{
-                Utility.showError(withMessage: Constant.ERROR_LOCATION_DISABLED, onViewController: self)
-                fetchDataForDummyLocation()
-            }
+           refreshServerData()
+        }
+    }
+    
+    func refreshServerData(){
+        //Clear Image cache, fetch data from server and overwrite core data
+        CacheManager.shared.clearPermanentCache()
+        if CLLocationManager.locationServicesEnabled() {
+            getLocationAndFetchDataFromServer()
+        }else{
+            Utility.showError(withMessage: Constant.ERROR_LOCATION_DISABLED, onViewController: self)
+            fetchDataForDummyLocation()
         }
     }
     

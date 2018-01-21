@@ -49,7 +49,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="YWm-0R-crs" secondAttribute="trailing" constant="10" id="mdh-Ty-88u"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oliver Kitchen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="So3-YB-7BV">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="So3-YB-7BV">
                                                     <rect key="frame" x="120" y="10" width="205" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -57,22 +57,23 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxh-JD-NkK">
                                                     <rect key="frame" x="330" y="10.5" width="40" height="21"/>
+                                                    <color key="backgroundColor" red="0.16327719241769356" green="0.53881775031840129" blue="0.16056904676352848" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="Dpm-FL-LHY"/>
                                                         <constraint firstAttribute="height" constant="21" id="ZEy-d5-aE5"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                    <state key="normal" title="4.4">
+                                                    <state key="normal" title="4.0">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="North Indian, Mughlai, Biryani" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0J-WK-rvV">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurant Cuisines" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0J-WK-rvV">
                                                     <rect key="frame" x="120" y="36" width="250" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rs 1500 for two persons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czb-Lk-uCd">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price for two" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czb-Lk-uCd">
                                                     <rect key="frame" x="120" y="55.5" width="250" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -104,7 +105,7 @@
                                                         <constraint firstAttribute="height" constant="15" id="4dh-Sn-0re"/>
                                                         <constraint firstAttribute="width" constant="15" id="tKw-Z3-zyN"/>
                                                     </constraints>
-                                                    <state key="normal" image="check"/>
+                                                    <state key="normal" image="cross"/>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JcL-yd-t1r" userLabel="Line View">
                                                     <rect key="frame" x="10" y="119.5" width="365" height="0.0"/>
@@ -170,7 +171,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Restaurants" id="68O-UY-gVw"/>
+                    <navigationItem key="navigationItem" title="Restaurants" id="68O-UY-gVw">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="refresh" id="OBF-Tr-e76">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="refreshAction:" destination="BYZ-38-t0r" id="3aY-4F-oGp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="i2h-fI-ZS3" id="253-6l-Qxa"/>
                     </connections>
@@ -204,7 +212,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="check" width="30" height="30"/>
         <image name="cross" width="30" height="30"/>
+        <image name="refresh" width="30" height="30"/>
     </resources>
 </document>

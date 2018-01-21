@@ -11,6 +11,7 @@
 		2841AF262013B9C100AD654C /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841AF252013B9C100AD654C /* UINavigationControllerExtension.swift */; };
 		2841AF282013C54100AD654C /* ViewControllerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841AF272013C54100AD654C /* ViewControllerTableViewCell.swift */; };
 		2841AF2A2013C7E400AD654C /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841AF292013C7E400AD654C /* CacheManager.swift */; };
+		2841AF2C20146C6200AD654C /* MyFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841AF2B20146C6100AD654C /* MyFileManager.swift */; };
 		2870D3D0200F77570058978F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2870D3CF200F77570058978F /* AppDelegate.swift */; };
 		2870D3D2200F77570058978F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2870D3D1200F77570058978F /* ViewController.swift */; };
 		2870D3D5200F77580058978F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2870D3D3200F77580058978F /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		2841AF252013B9C100AD654C /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		2841AF272013C54100AD654C /* ViewControllerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTableViewCell.swift; sourceTree = "<group>"; };
 		2841AF292013C7E400AD654C /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		2841AF2B20146C6100AD654C /* MyFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFileManager.swift; sourceTree = "<group>"; };
 		2870D3CC200F77570058978F /* FeedMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2870D3CF200F77570058978F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2870D3D1200F77570058978F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				2870D3F7200FCE180058978F /* DataManager.swift */,
 				2870D4162010C9AE0058978F /* MyLocationManager.swift */,
 				2841AF292013C7E400AD654C /* CacheManager.swift */,
+				2841AF2B20146C6100AD654C /* MyFileManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				2870D3F0200FCC860058978F /* Utility.swift in Sources */,
 				2870D3F8200FCE180058978F /* DataManager.swift in Sources */,
 				2870D40C200FE20A0058978F /* ZomatoEvents.swift in Sources */,
+				2841AF2C20146C6200AD654C /* MyFileManager.swift in Sources */,
 				2870D3F3200FCD110058978F /* UrlConstant.swift in Sources */,
 				2870D4172010C9AE0058978F /* MyLocationManager.swift in Sources */,
 				2870D411200FE20A0058978F /* Photo.swift in Sources */,

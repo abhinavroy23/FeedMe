@@ -51,10 +51,11 @@ class ViewControllerTableViewCell: UITableViewCell {
             }else{
                 self.restaurantTableBookingBtn.setImage(#imageLiteral(resourceName: "cross"), for: .normal)
             }
-            CacheManager.shared.getImage(forUrl: restaurant?.thumb ?? "", withCompletionHandler: { (image) in
+            CacheManager.shared.getImageFromPermanentCache(forUrl: restaurant?.thumb ?? "", withCompletionHandler: { (image) in
                 self.restaurantImage.image = image
             }, andErrorHandler: {
                 self.restaurantImage.image = nil
+
             })
         }
     }
