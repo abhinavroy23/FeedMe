@@ -18,6 +18,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchSearchResults()
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,7 +26,6 @@ class ViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        fetchSearchResults()
     }
 
     @IBAction func refreshAction(_ sender: Any) {
@@ -98,13 +98,18 @@ extension ViewController{
     }
     
     func refreshServerData(){
-        //Clear Image cache, fetch data from server and overwrite core data
-        CacheManager.shared.clearPermanentCache()
-        if CLLocationManager.locationServicesEnabled() {
-            getLocationAndFetchDataFromServer()
+        
+        if(Utility.isConnectedToNetwork()){
+            //Clear Image cache, fetch data from server and overwrite core data
+            CacheManager.shared.clearPermanentCache()
+            if CLLocationManager.locationServicesEnabled() {
+                getLocationAndFetchDataFromServer()
+            }else{
+                Utility.showError(withMessage: Constant.ERROR_LOCATION_DISABLED, onViewController: self)
+                fetchDataForDummyLocation()
+            }
         }else{
-            Utility.showError(withMessage: Constant.ERROR_LOCATION_DISABLED, onViewController: self)
-            fetchDataForDummyLocation()
+            Utility.showError(withMessage: "Internet connection not available!", onViewController: self)
         }
     }
     
@@ -123,21 +128,32 @@ extension ViewController{
     }
     
     func fetchFromServerAndStore(forLat lat:String, andLong long:String){
+        FeedMeLoader.shared.startLoader()
         hitServiceToFetchNearbyRestaurants(forLat: lat, andLong: long, withCompletionHandler: {
             if let searchResult = self.searchResults{
                 self.dataManager.saveSearchResultsToCD(searchResult: searchResult, withCompletionHandler: {
                     DispatchQueue.main.async {
+                        FeedMeLoader.shared.stopLoader()
                         self.tableView.reloadData()
                     }
                     debugPrint("MODEL STORED IN STORAGE")
                 }, andErrorHandler: {
+                    DispatchQueue.main.async {
+                        FeedMeLoader.shared.stopLoader()
+                    }
                     debugPrint("ERROR")
                 })
             }else{
+                DispatchQueue.main.async {
+                    FeedMeLoader.shared.stopLoader()
+                }
                 debugPrint("ERROR")
             }
             
         }) { (error) in
+            DispatchQueue.main.async {
+                FeedMeLoader.shared.stopLoader()
+            }
             debugPrint("ERROR : \(error)")
         }
     }

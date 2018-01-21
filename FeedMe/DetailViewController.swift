@@ -63,10 +63,16 @@ extension DetailViewController{
         if let restaurant = self.restaurant{
             //Restaurant Image
             let imageUrl = (restaurant.featuredImage ?? "").replacingOccurrences(of: "?output-format=webp", with: "")
-            CacheManager.shared.getImageFromPermanentCache(forUrl: imageUrl, withCompletionHandler: { (image) in
-                self.restaurantImageView.image = image
-            }) {
-                self.restaurantImageView.image = nil
+            DispatchQueue.global(qos: .background).async {
+                CacheManager.shared.getImageFromPermanentCache(forUrl: imageUrl, withCompletionHandler: { (image) in
+                    DispatchQueue.main.sync {
+                        self.restaurantImageView.image = image
+                    }
+                }) {
+                    DispatchQueue.main.async {
+                        self.restaurantImageView.image = nil
+                    }
+                }
             }
             
             //Restaurant name

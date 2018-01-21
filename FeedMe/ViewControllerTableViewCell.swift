@@ -51,12 +51,19 @@ class ViewControllerTableViewCell: UITableViewCell {
             }else{
                 self.restaurantTableBookingBtn.setImage(#imageLiteral(resourceName: "cross"), for: .normal)
             }
-            CacheManager.shared.getImageFromPermanentCache(forUrl: restaurant?.thumb ?? "", withCompletionHandler: { (image) in
-                self.restaurantImage.image = image
-            }, andErrorHandler: {
-                self.restaurantImage.image = nil
-
-            })
+            
+            let thumbUrl = self.restaurant?.thumb ?? ""
+            DispatchQueue.global(qos: .background).async {
+                CacheManager.shared.getImageFromPermanentCache(forUrl: thumbUrl, withCompletionHandler: { (image) in
+                    DispatchQueue.main.async {
+                         self.restaurantImage.image = image
+                    }
+                }, andErrorHandler: {
+                    DispatchQueue.main.async {
+                        self.restaurantImage.image = nil
+                    }
+                })
+            }
             saveActualImageInBackground(forUrl: restaurant?.featuredImage ?? "")
         }
     }

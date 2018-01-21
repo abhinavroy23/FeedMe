@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SystemConfiguration
 
 class Utility: NSObject {
     
@@ -26,37 +27,36 @@ class Utility: NSObject {
         vc.present(alertController, animated: true, completion: nil)
     }
     
-    
-    static func getStringFromKeychain(forKey key:String) -> String?{
-        var data : String? = nil
-        do {
-            let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: key, accessGroup: KeychainConfiguration.accessGroup)
-            data = try passwordItem.readPassword()
-        }
-        catch {
-            print("Error reading key from keychain - \(error)")
-        }
-        return data
-    }
-    
-    static func setStringInKeychain(forKey key:String, andData data:String) -> Bool{
-        do {
-            let passwordItem = KeychainPasswordItem(service: KeychainConfiguration.serviceName, account: key, accessGroup: KeychainConfiguration.accessGroup)
-            try passwordItem.savePassword(data)
-            return true
-        }
-        catch {
-            print("Error updating keychain - \(error)")
-            return false
-        }
-    }
-    
     static func intFromHexString(hexStr: String) -> UInt32 {
         var hexInt: UInt32 = 0
         let scanner: Scanner = Scanner(string: hexStr)
         scanner.charactersToBeSkipped = CharacterSet.init(charactersIn: "#")
         scanner.scanHexInt32(&hexInt)
         return hexInt
+    }
+    
+    static func isConnectedToNetwork() -> Bool {
+        
+        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, zeroSockAddress)
+            }
+        }
+        
+        var flags: SCNetworkReachabilityFlags = SCNetworkReachabilityFlags(rawValue: 0)
+        if SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) == false {
+            return false
+        }
+        
+        let isReachable = flags == .reachable
+        let needsConnection = flags == .connectionRequired
+        
+        return isReachable && !needsConnection
+        
     }
 
 }

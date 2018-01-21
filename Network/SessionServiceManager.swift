@@ -16,20 +16,10 @@ enum enRequestContentType{
     case eRequestTextPlainType
 }
 
-protocol SessionServiceprotocol: class {
-    
-    func responseHandler(forUrl : String, withResponseData : Data)
-    func requestErrorHandler(forUrl : String, withError : NSError)
-    
-}
-
 class SessionServiceManager : NSObject {
     
     let kTimeOut = 150
     static let sharedSessionServiceManger : SessionServiceManager = SessionServiceManager()
-    
-    //delegate to confirm in other class
-    weak var serviceManagerDelegate : SessionServiceprotocol?
     
     func sendRequest(forUrl url:String, dataToSend inJsonDic:AnyObject?, cookies isCookiesRequired : Bool, requestType inRequestType : String, contentType inContentType : enRequestContentType, headers inHeaderDic : [String : String] ,withCompletionHandler completionHandler:@escaping (_ responseData : Data?)->(), andErrorHandler errorHandler:@escaping (_ error: Error?)->()){
         
@@ -50,7 +40,7 @@ class SessionServiceManager : NSObject {
         
         //Add cookies if required
         if isCookiesRequired {
-            let cookieUrl : NSURL = NSURL.init(string: "\(url.scheme)://\(url.host)")!
+            let cookieUrl : NSURL = NSURL.init(string: "\(String(describing: url.scheme))://\(String(describing: url.host))")!
             let cookieArray : [HTTPCookie] = HTTPCookieStorage.shared.cookies(for: cookieUrl as URL)!
             let cookiesDic : Dictionary? = HTTPCookie.requestHeaderFields(with: cookieArray)
             if(cookiesDic != nil){
@@ -87,7 +77,7 @@ class SessionServiceManager : NSObject {
         
         //Additional header dic
         for (key,value) in inHeaderDic {
-            dataTaskRequest.addValue(value as! String, forHTTPHeaderField: key as! String)
+            dataTaskRequest.addValue(value, forHTTPHeaderField: key)
         }
         
         //serialize body

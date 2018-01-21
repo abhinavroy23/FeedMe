@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2815471D20148CEF001472D3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2815471C20148CEF001472D3 /* DetailViewController.swift */; };
+		2815471F2014BE61001472D3 /* FeedMeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2815471E2014BE61001472D3 /* FeedMeLoader.swift */; };
 		2841AF242013B94E00AD654C /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841AF232013B94E00AD654C /* UIStoryboardExtension.swift */; };
 		2841AF262013B9C100AD654C /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841AF252013B9C100AD654C /* UINavigationControllerExtension.swift */; };
 		2841AF282013C54100AD654C /* ViewControllerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2841AF272013C54100AD654C /* ViewControllerTableViewCell.swift */; };
@@ -19,8 +20,6 @@
 		2870D3D8200F77580058978F /* FeedMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2870D3D6200F77580058978F /* FeedMe.xcdatamodeld */; };
 		2870D3DA200F77580058978F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2870D3D9200F77580058978F /* Assets.xcassets */; };
 		2870D3DD200F77580058978F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2870D3DB200F77580058978F /* LaunchScreen.storyboard */; };
-		2870D3EB200FCC0E0058978F /* KeychainConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2870D3E6200FCC0C0058978F /* KeychainConfiguration.swift */; };
-		2870D3EC200FCC0E0058978F /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2870D3E7200FCC0C0058978F /* KeychainPasswordItem.swift */; };
 		2870D3EE200FCC200058978F /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2870D3ED200FCC200058978F /* Constant.swift */; };
 		2870D3F0200FCC860058978F /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2870D3EF200FCC860058978F /* Utility.swift */; };
 		2870D3F3200FCD110058978F /* UrlConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2870D3F2200FCD110058978F /* UrlConstant.swift */; };
@@ -43,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		2815471C20148CEF001472D3 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		2815471E2014BE61001472D3 /* FeedMeLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMeLoader.swift; sourceTree = "<group>"; };
 		2841AF232013B94E00AD654C /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
 		2841AF252013B9C100AD654C /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		2841AF272013C54100AD654C /* ViewControllerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTableViewCell.swift; sourceTree = "<group>"; };
@@ -56,8 +56,6 @@
 		2870D3D9200F77580058978F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2870D3DC200F77580058978F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2870D3DE200F77580058978F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2870D3E6200FCC0C0058978F /* KeychainConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainConfiguration.swift; sourceTree = "<group>"; };
-		2870D3E7200FCC0C0058978F /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		2870D3ED200FCC200058978F /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		2870D3EF200FCC860058978F /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		2870D3F2200FCD110058978F /* UrlConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlConstant.swift; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 				2870D3F1200FCCDD0058978F /* Extensions */,
 				2870D3EA200FCC0D0058978F /* Constants */,
 				2870D3E8200FCC0D0058978F /* Models */,
-				2870D3E4200FCC0C0058978F /* Security */,
 				2870D3E9200FCC0D0058978F /* Utilities */,
 				2870D3CE200F77570058978F /* FeedMe */,
 				2870D3CD200F77570058978F /* Products */,
@@ -128,23 +125,6 @@
 			path = FeedMe;
 			sourceTree = "<group>";
 		};
-		2870D3E4200FCC0C0058978F /* Security */ = {
-			isa = PBXGroup;
-			children = (
-				2870D3E5200FCC0C0058978F /* Keychain */,
-			);
-			path = Security;
-			sourceTree = "<group>";
-		};
-		2870D3E5200FCC0C0058978F /* Keychain */ = {
-			isa = PBXGroup;
-			children = (
-				2870D3E6200FCC0C0058978F /* KeychainConfiguration.swift */,
-				2870D3E7200FCC0C0058978F /* KeychainPasswordItem.swift */,
-			);
-			path = Keychain;
-			sourceTree = "<group>";
-		};
 		2870D3E8200FCC0D0058978F /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				2870D3EF200FCC860058978F /* Utility.swift */,
+				2815471E2014BE61001472D3 /* FeedMeLoader.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -283,6 +264,7 @@
 			files = (
 				2870D3F0200FCC860058978F /* Utility.swift in Sources */,
 				2870D3F8200FCE180058978F /* DataManager.swift in Sources */,
+				2815471F2014BE61001472D3 /* FeedMeLoader.swift in Sources */,
 				2870D40C200FE20A0058978F /* ZomatoEvents.swift in Sources */,
 				2841AF2C20146C6200AD654C /* MyFileManager.swift in Sources */,
 				2870D3F3200FCD110058978F /* UrlConstant.swift in Sources */,
@@ -291,7 +273,6 @@
 				2870D409200FE20A0058978F /* NearbyRestaurants.swift in Sources */,
 				2870D412200FE20A0058978F /* UserRating.swift in Sources */,
 				2815471D20148CEF001472D3 /* DetailViewController.swift in Sources */,
-				2870D3EC200FCC0E0058978F /* KeychainPasswordItem.swift in Sources */,
 				2870D3D2200F77570058978F /* ViewController.swift in Sources */,
 				2841AF2A2013C7E400AD654C /* CacheManager.swift in Sources */,
 				2841AF242013B94E00AD654C /* UIStoryboardExtension.swift in Sources */,
@@ -305,7 +286,6 @@
 				2870D3F5200FCD6F0058978F /* UIColorExtension.swift in Sources */,
 				2870D40E200FE20A0058978F /* Photos.swift in Sources */,
 				2841AF262013B9C100AD654C /* UINavigationControllerExtension.swift in Sources */,
-				2870D3EB200FCC0E0058978F /* KeychainConfiguration.swift in Sources */,
 				2841AF282013C54100AD654C /* ViewControllerTableViewCell.swift in Sources */,
 				2870D3FC200FD9450058978F /* SessionServiceManager.swift in Sources */,
 				2870D3D8200F77580058978F /* FeedMe.xcdatamodeld in Sources */,
