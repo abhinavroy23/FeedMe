@@ -1,3 +1,1 @@
 # FeedMe
-
-Quikr Assignment
